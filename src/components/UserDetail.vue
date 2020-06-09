@@ -44,17 +44,36 @@
           {{ skill }}
         </v-list-item-content>
       </v-list-item>
+
+      <v-list-item>
+        <v-list-item-content>수정일자:</v-list-item-content>
+        <v-list-item-content class="align-end">
+          {{ editedDate }}
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </div>
 </template>
 
 <script>
+import { eventBus} from '@/main.js'
 export default {
+  data() {
+    return {
+      editedDate : null
+    }
+  },
   props: [ 'name', 'address', 'age', 'phone', 'hasDog', 'skill' ],
   computed: {
     hasDogKr() {
       return this.hasDog === true ? "있음" : "없음"
     }
+  },
+  created() {
+    eventBus.$on('userWasEdited', (date) => {
+      this.editedDate = date
+      console.log("event on: " + date)
+    })
   }
 }
 </script>
