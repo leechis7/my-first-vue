@@ -48,7 +48,7 @@
       <v-list-item>
         <v-list-item-content>수정일자:</v-list-item-content>
         <v-list-item-content class="align-end">
-          {{ editedDate }}
+          {{ getDateAndTime(editedDate) }}
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -57,6 +57,7 @@
 
 <script>
 import { eventBus} from '@/main.js'
+import { dateFormat } from '../mixins/dateFormat.js'
 export default {
   data() {
     return {
@@ -74,7 +75,8 @@ export default {
       this.editedDate = date
       console.log("event on: " + date)
     })
-  }
+  },
+  mixins: [dateFormat]
 }
 </script>
 
