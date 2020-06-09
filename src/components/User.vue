@@ -1,17 +1,26 @@
 <template>
   <div class="blue lighten-3 pa-3">
-    <h1>User Component</h1>
-    <p>Name: {{ name }} </p>
+    <h1>User 컴포넌트</h1>
+    <p>이름: {{ name }} </p>
     <v-btn @click="changeName()">이름 변경</v-btn>
-    <hr>
-    <v-layout row wrap>
-        <v-flex xs12 sm6>
-            <UserDetail :nameofChild="name"></UserDetail>
-        </v-flex>
-        <v-flex xs12 sm6>
-            <UserEdit></UserEdit>
-        </v-flex>
-    </v-layout>
+  <hr>
+  <v-layout row wrap>
+    <v-flex xs12 sm6>
+      <UserDetail 
+      v-bind:name="name" v-bind:address="address"
+      v-bind:age="age" v-bind:phone="phone"
+      v-bind:hasDog="hasDog" v-bind:skill="skill"
+      ></UserDetail>
+    </v-flex>
+    <v-flex xs12 sm6>
+      <UserEdit
+      v-bind:name="name" v-bind:address="address"
+      v-bind:age="age" v-bind:phone="phone"
+      v-bind:hasDog="hasDog" v-bind:skill="skill"
+      @child="parents"
+      ></UserEdit>
+    </v-flex>
+  </v-layout>
   </div>
 </template>
 
@@ -27,13 +36,27 @@ export default {
 
   data () {
     return {
-        name: 'Vue JS'
+      name: "Heming",
+      address: "Tokyo",
+      age: 28,
+      phone: '080-2313-8282',
+      hasDog: false,
+      skill: ["html","css","js","vue"]
     }
   },
 
   methods: {
       changeName () {
           this.name = "Heming"
+      },
+      parents (user) {
+        console.log("parent호출");
+        this.name = user.name;
+        this.address = user.address;
+        this.age = user.age;
+        this.phone = user.phone;
+        this.hasDog = user.hasDog;
+        this.skill = user.skill;
       }
   }
 }
