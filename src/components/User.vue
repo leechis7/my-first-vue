@@ -3,6 +3,7 @@
     <h1>User 컴포넌트</h1>
     <p>이름: {{ name }} </p>
     <p> {{ getDateAndTime(createdAt)}}</p>
+    {{ helloToMixin }}
   <hr>
   <v-layout row wrap>
     <v-flex xs12 sm6>
@@ -44,6 +45,12 @@ export default {
       hasDog: false,
       skill: ["html","css","js","vue"],
       createdAt: null
+    }
+  },
+
+  computed: {
+    helloToMixin() {
+      return this.mixinData + " .. 반갑소 !"
     }
   },
 

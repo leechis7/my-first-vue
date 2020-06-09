@@ -1,4 +1,10 @@
 export const dateFormat = {
+    data() {
+        return {
+            mixinData: "내가 커피의 믹스인이다...!"
+        }
+    },
+
     methods: {
       getDateAndTime(date) {
         if(date !== null){
